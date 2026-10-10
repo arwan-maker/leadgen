@@ -16,6 +16,7 @@ Rules followed: CREA DDF display and data rules (see `../paperwork/3-rules-the-a
 1. Push this folder to GitHub and import it in Vercel (New Project). No build settings are needed.
 2. **Storage > Neon (Postgres)**: this sets `DATABASE_URL`.
 3. **Settings > Environment Variables**: copy the names from `.env.example` and fill in what you have. The app runs without the feed and alert keys; those features just skip until they're set.
+   **The realtor enters the feed logins herself** (`DDF_CLIENT_ID`, `DDF_CLIENT_SECRET`, later `PROPTX_TOKEN`). CREA's rules don't let her share her DDF login with a tech provider. Add her to the Vercel team and have her save them as **Sensitive** variables, which nobody can read back after saving. The domain should be in her or the brokerage's name.
 4. Create the tables: paste `db/schema.sql` into Neon's SQL editor, or run `DATABASE_URL=... npm run migrate`. It's safe to run again after updates.
 5. Redeploy. Open `/admin.html`, sign in with `ADMIN_TOKEN`, and add the realtor under **Sellers** (email, mobile number).
 6. The hourly cron needs a Vercel Pro plan. To run a sync right away: `curl -H "Authorization: Bearer $CRON_SECRET" https://YOUR-APP/api/cron/sync-listings?full=1`, then check the `sync_runs` table shows `fetched` above 0.
