@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LeadGEN Admin</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="admin.css">
+</head><body>
+<header class="top">
+  <h1>LeadGEN</h1>
+  <nav class="tabs" id="tabs" hidden>
+    <button type="button" data-tab="leads" class="on">Leads</button>
+    <button type="button" data-tab="sellers">Sellers</button>
+  </nav>
+  <button type="button" id="signout" class="link" hidden>Sign out</button>
+</header>
+
+<main>
+  <form id="signin" class="card signin">
+    <h2>Sign in</h2>
+    <label>Admin token <input id="tok" type="password" autocomplete="current-password" required></label>
+    <button type="submit" class="primary">Sign in</button>
+    <p class="msg" id="signin-msg" role="alert"></p>
+  </form>
+
+  <section id="view-leads" hidden>
+    <div class="stats" id="stats" aria-live="polite"></div>
+    <details class="card more-stats" id="more-stats"><summary>More numbers</summary><div id="stats-more"></div></details>
+
+    <form id="filters" class="filters">
+      <input type="search" name="q" placeholder="Search name, email, phone" aria-label="Search">
+      <select name="status" aria-label="Status"><option value="">All statuses</option></select>
+      <select name="source" aria-label="Source"><option value="">All sources</option><option value="website">Website</option><option value="google_ads">Google ad</option></select>
+      <select name="area" aria-label="Area"><option value="">All areas</option><option>GTA</option><option>Waterloo</option><option>Cambridge</option><option value="none">No area</option></select>
+      <label class="date">From <input type="date" name="from"></label>
+      <label class="date">To <input type="date" name="to"></label>
+      <label class="check"><input type="checkbox" name="include_test" value="1"> Test leads</label>
+      <div class="filter-actions">
+        <button type="button" id="clear" class="link">Clear</button>
+        <button type="button" id="csv">Export CSV</button>
+      </div>
+    </form>
+
+    <p class="msg" id="leads-msg" role="status"></p>
+    <table class="leads" id="leads">
+      <thead><tr><th>Received</th><th>Name</th><th>Contact</th><th>Source</th><th>Area</th><th>Seller</th><th>Matches</th><th>Notified</th><th>Status</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="pager"><button type="button" id="prev">Previous</button><span id="page"></span><button type="button" id="next">Next</button></div>
+  </section>
+
+  <section id="view-sellers" hidden>
+    <div class="row-head"><h2>Sellers</h2><button type="button" id="add-seller" class="primary">Add seller</button></div>
+    <p class="msg" id="sellers-msg" role="status"></p>
+    <ul class="sellers" id="sellers"></ul>
+  </section>
+</main>
+
+<aside class="panel" id="lead-panel" hidden aria-labelledby="lead-title">
+  <div class="panel-head"><h2 id="lead-title">Lead</h2><button type="button" class="close" data-close aria-label="Close">&times;</button></div>
+  <div class="panel-body" id="lead-body"></div>
+</aside>
+
+<aside class="panel" id="seller-panel" hidden aria-labelledby="seller-title">
+  <div class="panel-head"><h2 id="seller-title">Seller</h2><button type="button" class="close" data-close aria-label="Close">&times;</button></div>
+  <form class="panel-body seller-form" id="seller-form" novalidate>
+    <label>Name <input name="name" required maxlength="120"></label>
+    <label>Email <input name="email" type="email" maxlength="200"></label>
+    <label>Mobile (for SMS) <input name="phone" type="tel" placeholder="+14165550100" maxlength="16"></label>
+    <fieldset><legend>Areas (none = all areas)</legend><div id="area-checks"></div></fieldset>
+    <label class="check"><input type="checkbox" name="notify_email"> Email new leads</label>
+    <label class="check"><input type="checkbox" name="notify_sms"> Text new leads</label>
+    <label class="check"><input type="checkbox" name="active"> Active</label>
+    <p class="msg" id="seller-msg" role="alert"></p>
+    <button type="submit" class="primary">Save</button>
+  </form>
+</aside>
+<div class="backdrop" id="backdrop" hidden></div>
+
+<script src="admin.js"></script>
+</body></html>

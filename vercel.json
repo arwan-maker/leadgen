@@ -1,0 +1,7 @@
+{
+  "headers": [
+    { "source": "/leadgen-popup.js", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }, { "key": "Cache-Control", "value": "public, max-age=300" }] }
+  ],
+  "functions": { "api/cron/sync-listings.js": { "maxDuration": 60 } },
+  "crons": [{ "path": "/api/cron/sync-listings", "schedule": "0 * * * *" }]
+}

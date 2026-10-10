@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Homes for Sale and Lease: GTA, Waterloo, Cambridge</title>
+<meta name="description" content="Search homes for sale and lease across the GTA, Waterloo Region and Cambridge.">
+<link rel="stylesheet" href="/search.css">
+</head>
+<body>
+<a class="skip" href="#results">Skip to results</a>
+<header>
+  <div class="wrap">
+    <p class="brand">
+      <!-- TODO: replace with the official iCloud Realty Ltd. logo file (controlling participant logo, CREA rule 6(c)). -->
+      <span class="logo-ph" aria-hidden="true">iC</span> iCloud Realty Ltd., Brokerage
+    </p>
+    <form id="search-form" role="search" action="/index.html">
+      <div class="searchbar">
+        <label for="q" class="sr-only">Search by city, area, address or MLS® number</label>
+        <input id="q" name="q" type="search" placeholder="City, address or MLS®" autocomplete="off" maxlength="100">
+        <button class="btn" type="submit">Search</button>
+      </div>
+      <div class="filters">
+        <div><label for="f-area">Area</label>
+          <select id="f-area" name="area"><option value="">All areas</option><option>GTA</option><option>Waterloo</option><option>Cambridge</option></select></div>
+        <div><label for="f-type">For</label>
+          <select id="f-type" name="type"><option value="">Sale or lease</option><option value="sale">Sale</option><option value="lease">Lease</option></select></div>
+        <div><label for="f-ptype">Property type</label>
+          <select id="f-ptype" name="property_type"><option value="">Any type</option><option>House</option><option>Condo</option><option>Townhouse</option><option>Land</option><option>Commercial</option></select></div>
+        <div><label for="f-min">Min price</label>
+          <select id="f-min" name="min_price"><option value="">No min</option></select></div>
+        <div><label for="f-max">Max price</label>
+          <select id="f-max" name="max_price"><option value="">No max</option></select></div>
+        <div><label for="f-beds">Beds</label>
+          <select id="f-beds" name="beds"><option value="">Any</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5+</option></select></div>
+        <div><label for="f-baths">Baths</label>
+          <select id="f-baths" name="baths"><option value="">Any</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select></div>
+        <div class="actions"><button class="btn" type="reset" id="reset">Clear filters</button></div>
+      </div>
+    </form>
+  </div>
+</header>
+
+<main id="results" class="wrap" tabindex="-1">
+  <div class="summary">
+    <p id="count" aria-live="polite">Loading listings…</p>
+    <div><label for="f-sort">Sort by</label>
+      <select id="f-sort" name="sort" form="search-form"><option value="newest">Newest</option><option value="price_asc">Price: low to high</option><option value="price_desc">Price: high to low</option></select></div>
+  </div>
+  <ul id="list" class="grid" aria-busy="true"></ul>
+  <div id="state"></div>
+  <nav class="pager" id="pager" aria-label="Pages" hidden>
+    <button class="btn ghost" type="button" id="prev">Previous</button>
+    <span id="pageinfo"></span>
+    <button class="btn ghost" type="button" id="next">Next</button>
+  </nav>
+</main>
+
+<div id="detail" class="modal" hidden><div class="panel detail" id="detail-body" role="dialog" aria-modal="true" aria-labelledby="d-title" tabindex="-1"></div></div>
+
+<footer>
+  <p><strong>iCloud Realty Ltd., Brokerage</strong></p>
+  <p class="tm">The trademarks REALTOR®, REALTORS®, and the REALTOR® logo are controlled by The Canadian Real Estate Association (CREA) and identify real estate professionals who are members of CREA. The trademarks MLS®, Multiple Listing Service® and the associated logos are owned by CREA and identify the quality of services provided by real estate professionals who are members of CREA.</p>
+  <p>Listing information is deemed reliable but not guaranteed. Listings marked "(demo)" are fictional test data. <a href="#" id="show-terms">Terms of use</a></p>
+</footer>
+
+<!-- Terms of use click-wrap (CREA DDF rule 6(d)): listings load only after the visitor accepts. -->
+<div id="terms" class="modal" hidden>
+  <div class="panel terms" role="dialog" aria-modal="true" aria-labelledby="terms-title" tabindex="-1">
+    <h2 id="terms-title">Terms of use</h2>
+    <!-- TODO: replace this placeholder with CREA's exact required terms-of-use wording before going live with DDF listings. -->
+    <div class="terms-text" tabindex="0">
+      <p><strong>[PLACEHOLDER: CREA's required terms of use wording goes here.]</strong></p>
+      <p>The listing content on this website is owned or controlled by The Canadian Real Estate Association (CREA) and its members, and is protected by copyright. It is provided for your personal, non-commercial use to help you find a property you may be interested in buying or leasing. You may not copy, republish, scrape or redistribute it.</p>
+      <p>Listing information is deemed reliable but not guaranteed.</p>
+    </div>
+    <div class="cta"><button class="btn" type="button" id="accept-terms">I accept the terms of use</button></div>
+  </div>
+</div>
+
+<script src="/search.js"></script>
+<script src="/leadgen-popup.js" data-search-form="#search-form"></script>
+</body>
+</html>
